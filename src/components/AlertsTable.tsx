@@ -100,7 +100,7 @@ export function AlertsTable({ polizas, allPolizas, loading }: AlertsTableProps) 
     };
 
     return (
-        <Card className="border-zinc-200 h-full flex flex-col overflow-hidden">
+        <Card className="border-zinc-200 flex flex-col overflow-hidden">
             <CardHeader className="pb-4 shrink-0">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

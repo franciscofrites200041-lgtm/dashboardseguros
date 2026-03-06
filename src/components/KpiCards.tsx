@@ -29,8 +29,8 @@ export function KpiCards({ data, loading }: KpiCardsProps) {
     }
 
     return (
-        <Card className="relative overflow-hidden border-zinc-200 border-l-4 border-l-blue-500 transition-shadow hover:shadow-md h-full">
-            <CardContent className="flex h-full flex-col justify-center p-8">
+        <Card className="relative overflow-hidden border-zinc-200 border-l-4 border-l-blue-500 transition-shadow hover:shadow-md">
+            <CardContent className="flex flex-col justify-center p-8">
                 <div className="flex items-start justify-between">
                     <div className="space-y-2">
                         <p className="font-medium text-zinc-500 text-lg">

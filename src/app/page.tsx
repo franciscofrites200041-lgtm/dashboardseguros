@@ -65,12 +65,12 @@ export default function DashboardPage() {
         onPolizasChange={setPolizas}
       />
 
-      <main className="flex-1 px-8 py-8 h-[calc(100vh-64px)] overflow-hidden">
+      <main className="flex-1 px-8 py-8 lg:py-10 max-w-screen-2xl mx-auto w-full">
         {/* Main 3-column Grid based on the refined wireframe */}
-        <div className="grid h-full grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-6 lg:gap-8">
 
           {/* Left Column (Alerts Table) - Takes 4 columns */}
-          <div className="col-span-12 lg:col-span-4 h-full overflow-hidden flex flex-col">
+          <div className="col-span-12 lg:col-span-4 flex flex-col">
             <AlertsTable
               polizas={expiringPolizas}
               allPolizas={polizas}
@@ -79,18 +79,18 @@ export default function DashboardPage() {
           </div>
 
           {/* Middle Column (KPIs and Buttons) - Takes 4 columns */}
-          <div className="col-span-12 lg:col-span-4 flex flex-col gap-6 h-full overflow-hidden">
+          <div className="col-span-12 lg:col-span-4 flex flex-col gap-6">
 
             {/* Top: KPI Vigentes */}
-            <div className="flex-[0.4] min-h-0">
+            <div>
               <KpiCards data={kpis} loading={loading} />
             </div>
 
             {/* Middle: 4 Big Action Buttons (2x2 Grid) */}
-            <div className="grid grid-cols-2 grid-rows-2 gap-4 flex-[0.6] min-h-0">
+            <div className="grid grid-cols-2 gap-4">
               <Link
                 href="/"
-                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group h-full"
+                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square"
               >
                 <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                   <LayoutDashboard className="h-8 w-8 text-blue-600" />
@@ -100,7 +100,7 @@ export default function DashboardPage() {
 
               <Link
                 href="/polizas"
-                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group h-full"
+                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square"
               >
                 <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                   <ClipboardList className="h-8 w-8 text-blue-600" />
@@ -110,7 +110,7 @@ export default function DashboardPage() {
 
               <Dialog>
                 <DialogTrigger asChild>
-                  <button className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group h-full w-full">
+                  <button className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square w-full">
                     <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                       <Building2 className="h-8 w-8 text-blue-600" />
                     </div>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
 
               <button
                 onClick={() => setShowNewPoliza(true)}
-                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group h-full"
+                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square w-full"
               >
                 <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                   <UserPlus className="h-8 w-8 text-blue-600" />
@@ -136,7 +136,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Right Column (Cotizador) - Takes 4 columns */}
-          <div className="col-span-12 lg:col-span-4 h-full overflow-hidden flex flex-col">
+          <div className="col-span-12 lg:col-span-4 flex flex-col">
             <CotizadorWidget />
           </div>
 
