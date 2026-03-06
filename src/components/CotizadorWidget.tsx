@@ -19,25 +19,24 @@ export function CotizadorWidget() {
                     </Badge>
                 </div>
             </CardHeader>
-            <CardContent className="px-6 pb-6 pt-2 flex-1 flex flex-col relative z-10">
-                <div className="flex flex-col gap-4 mt-auto justify-end relative z-20 pb-4">
-                    <Link
-                        href="/cotizador"
-                        className="flex flex-col items-center justify-center gap-3 rounded-xl bg-blue-600 py-6 px-4 text-center text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1"
-                    >
-                        <Zap className="h-8 w-8 text-blue-200" />
-                        <span className="text-xl font-bold tracking-tight">Seguros AP</span>
-                    </Link>
+            <CardContent className="px-6 pb-6 pt-2 flex-1 flex flex-col relative z-10 gap-4">
+                <Link
+                    href="/cotizador"
+                    className="flex-1 flex flex-col items-center justify-center gap-3 rounded-xl bg-blue-600 p-6 text-center text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1"
+                >
+                    <Zap className="h-8 w-8 text-blue-200" />
+                    <span className="text-xl font-bold tracking-tight">Seguros AP</span>
+                    <span className="text-xs font-medium text-blue-200 bg-blue-700/50 px-3 py-1 rounded-full">Automotores Próximamente</span>
+                </Link>
 
-                    <button
-                        disabled
-                        className="flex flex-col items-center justify-center gap-3 rounded-xl bg-zinc-50 border-2 border-dashed border-zinc-200 py-6 px-4 text-center text-zinc-400 cursor-not-allowed transition-all hover:bg-zinc-100"
-                    >
-                        <ShieldAlert className="h-8 w-8 text-zinc-300" />
-                        <span className="text-xl font-bold tracking-tight text-zinc-500">Sepelios</span>
-                        <span className="text-xs font-medium bg-zinc-200 text-zinc-600 px-2 py-1 rounded-full">Próximamente</span>
-                    </button>
-                </div>
+                <button
+                    disabled
+                    className="flex-1 flex flex-col items-center justify-center gap-3 rounded-xl bg-zinc-50 border-2 border-dashed border-zinc-200 p-6 text-center text-zinc-400 cursor-not-allowed transition-all hover:bg-zinc-100"
+                >
+                    <ShieldAlert className="h-8 w-8 text-zinc-300" />
+                    <span className="text-xl font-bold tracking-tight text-zinc-500">Sepelios</span>
+                    <span className="text-xs font-medium bg-zinc-200 text-zinc-600 px-3 py-1 rounded-full">Próximamente</span>
+                </button>
             </CardContent>
 
             {/* Background Watermark text */}

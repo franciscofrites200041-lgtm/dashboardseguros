@@ -100,8 +100,8 @@ export function AlertsTable({ polizas, allPolizas, loading }: AlertsTableProps) 
     };
 
     return (
-        <Card className="border-zinc-200">
-            <CardHeader className="pb-4">
+        <Card className="border-zinc-200 h-full flex flex-col overflow-hidden">
+            <CardHeader className="pb-4 shrink-0">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <Clock className="h-5 w-5 text-amber-500" />
@@ -138,7 +138,7 @@ export function AlertsTable({ polizas, allPolizas, loading }: AlertsTableProps) 
                     </Badge>
                 </div>
             </CardHeader>
-            <CardContent className="px-0 pb-0">
+            <CardContent className="px-0 pb-0 flex-1 overflow-y-auto min-h-0">
                 {loading ? (
                     <TableSkeleton />
                 ) : displayData.length === 0 ? (
