@@ -20,14 +20,13 @@ export function CotizadorWidget() {
                 </div>
             </CardHeader>
             <CardContent className="px-6 pb-6 pt-2 flex-1 flex flex-col relative z-10">
-                <div className="flex flex-col gap-4 flex-1 justify-center relative z-20">
+                <div className="flex flex-col gap-4 mt-auto justify-end relative z-20 pb-4">
                     <Link
                         href="/cotizador"
                         className="flex flex-col items-center justify-center gap-3 rounded-xl bg-blue-600 py-6 px-4 text-center text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1"
                     >
                         <Zap className="h-8 w-8 text-blue-200" />
                         <span className="text-xl font-bold tracking-tight">Seguros AP</span>
-                        <span className="text-xs font-medium text-blue-200 bg-blue-700/50 px-2 py-1 rounded-full">Automotores Próximamente</span>
                     </Link>
 
                     <button

@@ -82,12 +82,12 @@ export default function DashboardPage() {
           <div className="col-span-12 lg:col-span-4 flex flex-col gap-6 h-full overflow-hidden">
 
             {/* Top: KPI Vigentes */}
-            <div className="h-40 shrink-0">
+            <div className="flex-[0.4] min-h-0">
               <KpiCards data={kpis} loading={loading} />
             </div>
 
             {/* Middle: 4 Big Action Buttons (2x2 Grid) */}
-            <div className="grid grid-cols-2 gap-4 flex-1">
+            <div className="grid grid-cols-2 grid-rows-2 gap-4 flex-[0.6] min-h-0">
               <Link
                 href="/"
                 className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group h-full"
