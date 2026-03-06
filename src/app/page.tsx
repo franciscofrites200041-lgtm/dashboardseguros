@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { KpiCards } from "@/components/KpiCards";
 import { AlertsTable } from "@/components/AlertsTable";
-import { CompanyChart } from "@/components/CompanyChart";
 import { AiChatWidget } from "@/components/AiChatWidget";
 import { Poliza, KpiData } from "@/lib/types";
 import { fetchPolizas } from "@/lib/api";
@@ -41,7 +40,12 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50/50">
-      <Header />
+      <Header
+        companyData={companyData}
+        loading={loading}
+        polizas={polizas}
+        onPolizasChange={setPolizas}
+      />
 
       <main className="space-y-8 px-8 py-8">
         {/* KPI Cards */}
@@ -49,18 +53,13 @@ export default function DashboardPage() {
           <KpiCards data={kpis} loading={loading} />
         </section>
 
-        {/* Alerts + Chart */}
-        <section className="grid gap-6 xl:grid-cols-3">
-          <div className="xl:col-span-2">
-            <AlertsTable
-              polizas={expiringPolizas}
-              allPolizas={polizas}
-              loading={loading}
-            />
-          </div>
-          <div>
-            <CompanyChart data={companyData} loading={loading} />
-          </div>
+        {/* Alerts — Full Width */}
+        <section>
+          <AlertsTable
+            polizas={expiringPolizas}
+            allPolizas={polizas}
+            loading={loading}
+          />
         </section>
       </main>
 
