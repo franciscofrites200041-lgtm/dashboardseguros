@@ -140,6 +140,20 @@ export function Header({
                                     </div>
                                 )}
                             </div>
+
+                            {/* Cotizar button */}
+                            <Link
+                                href="/cotizador"
+                                className={cn(
+                                    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                                    pathname === "/cotizador"
+                                        ? "bg-blue-600 text-white shadow-sm hover:bg-blue-700"
+                                        : "bg-blue-50 text-blue-700 hover:bg-blue-100"
+                                )}
+                            >
+                                <Calculator className="h-4 w-4" />
+                                Cotizar
+                            </Link>
                         </nav>
                     </div>
 
@@ -148,15 +162,6 @@ export function Header({
                         <span className="hidden text-sm text-zinc-500 lg:block">
                             {today.charAt(0).toUpperCase() + today.slice(1)}
                         </span>
-
-                        {/* Cotizar button */}
-                        <Link
-                            href="/cotizador"
-                            className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
-                        >
-                            <Calculator className="h-4 w-4" />
-                            Cotizar
-                        </Link>
 
                         {/* Crear Cliente button */}
                         <button
