@@ -90,7 +90,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-2 gap-4">
               <Link
                 href="/"
-                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square"
+                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-[4/3]"
               >
                 <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                   <LayoutDashboard className="h-8 w-8 text-blue-600" />
@@ -100,7 +100,7 @@ export default function DashboardPage() {
 
               <Link
                 href="/polizas"
-                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square"
+                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-[4/3]"
               >
                 <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                   <ClipboardList className="h-8 w-8 text-blue-600" />
@@ -110,7 +110,7 @@ export default function DashboardPage() {
 
               <Dialog>
                 <DialogTrigger asChild>
-                  <button className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square w-full">
+                  <button className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-[4/3] w-full">
                     <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                       <Building2 className="h-8 w-8 text-blue-600" />
                     </div>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
 
               <button
                 onClick={() => setShowNewPoliza(true)}
-                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-square w-full"
+                className="flex flex-col items-center justify-center gap-3 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-md group aspect-[4/3] w-full"
               >
                 <div className="rounded-full bg-blue-50 p-4 transition-colors group-hover:bg-blue-100">
                   <UserPlus className="h-8 w-8 text-blue-600" />

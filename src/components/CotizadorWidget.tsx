@@ -22,7 +22,7 @@ export function CotizadorWidget() {
             <CardContent className="px-6 pb-6 pt-6 flex flex-col relative z-10 gap-6">
                 <Link
                     href="/cotizador"
-                    className="flex flex-col items-center justify-center gap-3 rounded-xl bg-blue-600 p-8 text-center text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1"
+                    className="flex flex-col items-center justify-center gap-3 rounded-xl bg-blue-600 p-6 text-center text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1"
                 >
                     <Zap className="h-8 w-8 text-blue-200" />
                     <span className="text-xl font-bold tracking-tight">Seguros AP</span>
@@ -31,7 +31,7 @@ export function CotizadorWidget() {
 
                 <button
                     disabled
-                    className="flex flex-col items-center justify-center gap-3 rounded-xl bg-zinc-50 border-2 border-dashed border-zinc-200 p-8 text-center text-zinc-400 cursor-not-allowed transition-all hover:bg-zinc-100"
+                    className="flex flex-col items-center justify-center gap-3 rounded-xl bg-zinc-50 border-2 border-dashed border-zinc-200 p-6 text-center text-zinc-400 cursor-not-allowed transition-all hover:bg-zinc-100"
                 >
                     <ShieldAlert className="h-8 w-8 text-zinc-300" />
                     <span className="text-xl font-bold tracking-tight text-zinc-500">Sepelios</span>
