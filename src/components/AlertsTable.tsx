@@ -161,16 +161,7 @@ export function AlertsTable({ polizas, allPolizas, loading }: AlertsTableProps) 
                             <TableHeader>
                                 <TableRow className="hover:bg-transparent">
                                     <TableHead className="pl-6 text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                                        Estado
-                                    </TableHead>
-                                    <TableHead className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                                         Asegurado
-                                    </TableHead>
-                                    <TableHead className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                                        Compañía
-                                    </TableHead>
-                                    <TableHead className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                                        Póliza
                                     </TableHead>
                                     {viewMode === "vencimientos" && (
                                         <TableHead className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
@@ -182,9 +173,6 @@ export function AlertsTable({ polizas, allPolizas, loading }: AlertsTableProps) 
                                             Vencimiento
                                         </TableHead>
                                     )}
-                                    <TableHead className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                                        Costo Mensual
-                                    </TableHead>
                                     <TableHead className="pr-6 text-right text-xs font-semibold uppercase tracking-wider text-zinc-500">
                                         Acción
                                     </TableHead>
@@ -203,28 +191,27 @@ export function AlertsTable({ polizas, allPolizas, loading }: AlertsTableProps) 
                                             className="group transition-colors hover:bg-zinc-50/50"
                                         >
                                             <TableCell className="pl-6">
-                                                <Badge
-                                                    variant="outline"
-                                                    className={`text-xs font-medium ${estadoStyle.className}`}
-                                                >
-                                                    {estadoStyle.label}
-                                                </Badge>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div>
-                                                    <p className="text-sm font-medium text-zinc-900">
-                                                        {poliza.ASEGURADO}
-                                                    </p>
-                                                    <p className="text-xs text-zinc-400">
+                                                <div className="flex flex-col gap-1.5 py-1">
+                                                    <div className="flex items-center gap-2">
+                                                        <Badge
+                                                            variant="outline"
+                                                            className={`text-[10px] uppercase font-bold px-1.5 py-0 border-transparent ${estadoStyle.className}`}
+                                                        >
+                                                            {estadoStyle.label}
+                                                        </Badge>
+                                                        <p className="text-sm font-semibold text-zinc-900 leading-none">
+                                                            {poliza.ASEGURADO}
+                                                        </p>
+                                                    </div>
+                                                    <p className="text-xs font-medium text-zinc-500">
                                                         {poliza.COBERTURA}
                                                     </p>
+                                                    <p className="text-xs text-zinc-400 mt-0.5 font-medium flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                                                        <span className="text-zinc-600 bg-zinc-100 px-1.5 py-0.5 rounded-sm">{poliza.COMPAÑIA}</span> •
+                                                        <span className="font-mono text-zinc-500">{poliza.POLIZA}</span> •
+                                                        <span className="text-zinc-500">{formatCurrency(poliza.COSTO_MENSUAL)}</span>
+                                                    </p>
                                                 </div>
-                                            </TableCell>
-                                            <TableCell className="text-sm text-zinc-600">
-                                                {poliza.COMPAÑIA}
-                                            </TableCell>
-                                            <TableCell className="font-mono text-sm text-zinc-600">
-                                                {poliza.POLIZA}
                                             </TableCell>
                                             {viewMode === "vencimientos" && (
                                                 <TableCell>
@@ -243,9 +230,6 @@ export function AlertsTable({ polizas, allPolizas, loading }: AlertsTableProps) 
                                                     {poliza.VENCIMIENTO}
                                                 </TableCell>
                                             )}
-                                            <TableCell className="text-sm font-semibold text-zinc-900">
-                                                {formatCurrency(poliza.COSTO_MENSUAL)}
-                                            </TableCell>
                                             <TableCell className="pr-6 text-right">
                                                 {isNotified ? (
                                                     <Button
