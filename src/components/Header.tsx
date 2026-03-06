@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,11 +10,19 @@ import {
     Building2,
     UserPlus,
     Calculator,
+    Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CompanyChart } from "./CompanyChart";
 import { NewPolizaModal } from "./NewPolizaModal";
 import { Poliza } from "@/lib/types";
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 
 interface HeaderProps {
     companyData?: { name: string; value: number }[];
@@ -35,10 +43,7 @@ export function Header({
     onPolizasChange,
 }: HeaderProps) {
     const pathname = usePathname();
-    const [showChart, setShowChart] = useState(false);
     const [showNewPoliza, setShowNewPoliza] = useState(false);
-    const chartRef = useRef<HTMLDivElement>(null);
-    const chartBtnRef = useRef<HTMLButtonElement>(null);
 
     const today = new Date().toLocaleDateString("es-AR", {
         weekday: "long",
@@ -46,24 +51,6 @@ export function Header({
         month: "long",
         day: "numeric",
     });
-
-    // Close popover on outside click
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (
-                chartRef.current &&
-                !chartRef.current.contains(event.target as Node) &&
-                chartBtnRef.current &&
-                !chartBtnRef.current.contains(event.target as Node)
-            ) {
-                setShowChart(false);
-            }
-        }
-        if (showChart) {
-            document.addEventListener("mousedown", handleClickOutside);
-        }
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [showChart]);
 
     const handlePolizaCreated = (newPoliza: Poliza) => {
         if (onPolizasChange) {
@@ -75,97 +62,116 @@ export function Header({
         <>
             <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur-md">
                 <div className="flex h-16 items-center justify-between px-8">
-                    {/* Left: Logo + Title + Nav */}
-                    <div className="flex items-center gap-6">
-                        <div className="flex items-center gap-3">
-                            <Image
-                                src="/logo-inncome.png"
-                                alt="Inncome Logo"
-                                width={36}
-                                height={36}
-                                className="rounded-lg"
-                            />
-                            <h1 className="text-lg font-semibold tracking-tight text-zinc-900">
-                                Inncome Gestión
-                            </h1>
-                        </div>
+                    {/* Left: Logo/Menu Trigger */}
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <button className="flex items-center gap-3 transition-opacity hover:opacity-80">
+                                <Image
+                                    src="/logo-inncome.png"
+                                    alt="Inncome Logo"
+                                    width={36}
+                                    height={36}
+                                    className="rounded-lg"
+                                />
+                                <h1 className="text-lg font-semibold tracking-tight text-zinc-900">
+                                    Inncome Gestión
+                                </h1>
+                            </button>
+                        </SheetTrigger>
 
-                        {/* Navigation */}
-                        <nav className="hidden items-center gap-1 sm:flex">
-                            {navItems.map((item) => {
-                                const isActive = pathname === item.href;
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={cn(
-                                            "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                                            isActive
-                                                ? "bg-blue-50 text-blue-700"
-                                                : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900"
-                                        )}
-                                    >
-                                        <item.icon className="h-4 w-4" />
-                                        {item.label}
-                                    </Link>
-                                );
-                            })}
+                        {/* Sidebar Drawer */}
+                        <SheetContent side="left" className="flex w-80 flex-col border-r border-zinc-200 bg-white p-0">
+                            <SheetHeader className="border-b border-zinc-100 p-6 text-left">
+                                <SheetTitle className="flex items-center gap-3">
+                                    <Image
+                                        src="/logo-inncome.png"
+                                        alt="Inncome Logo"
+                                        width={32}
+                                        height={32}
+                                        className="rounded-lg"
+                                    />
+                                    <span>Inncome Gestión</span>
+                                </SheetTitle>
+                            </SheetHeader>
 
-                            {/* Compañías popover button */}
-                            <div className="relative">
-                                <button
-                                    ref={chartBtnRef}
-                                    onClick={() => setShowChart((prev) => !prev)}
-                                    className={cn(
-                                        "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                                        showChart
-                                            ? "bg-blue-50 text-blue-700"
-                                            : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900"
-                                    )}
-                                >
-                                    <Building2 className="h-4 w-4" />
-                                    Compañías
-                                </button>
+                            <div className="flex flex-1 flex-col justify-between overflow-y-auto p-4">
+                                {/* Top Nav Links */}
+                                <nav className="space-y-1">
+                                    {navItems.map((item) => {
+                                        const isActive = pathname === item.href;
+                                        return (
+                                            <Link
+                                                key={item.href}
+                                                href={item.href}
+                                                className={cn(
+                                                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                                                    isActive
+                                                        ? "bg-blue-50 text-blue-700"
+                                                        : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900"
+                                                )}
+                                            >
+                                                <item.icon className="h-4 w-4" />
+                                                {item.label}
+                                            </Link>
+                                        );
+                                    })}
 
-                                {/* Chart popover */}
-                                {showChart && (
-                                    <div
-                                        ref={chartRef}
-                                        className="absolute left-0 top-full mt-2 w-[420px] rounded-xl border border-zinc-200 bg-white p-0 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 z-[60]"
-                                    >
-                                        <CompanyChart
-                                            data={companyData}
-                                            loading={loading}
-                                        />
+                                    {/* Sub Items using buttons for Modals/Popovers within Sidebar */}
+                                    <div className="pt-4">
+                                        <p className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                                            Acciones
+                                        </p>
+
+                                        <button
+                                            onClick={() => { }} // Could open the chart modal or navigate
+                                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/80 hover:text-zinc-900"
+                                        >
+                                            <Building2 className="h-4 w-4" />
+                                            Compañías
+                                        </button>
+
+                                        <button
+                                            onClick={() => setShowNewPoliza(true)}
+                                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/80 hover:text-zinc-900"
+                                        >
+                                            <UserPlus className="h-4 w-4" />
+                                            Crear Cliente
+                                        </button>
+
+                                        <Link
+                                            href="/cotizador"
+                                            className={cn(
+                                                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                                                pathname === "/cotizador"
+                                                    ? "bg-blue-50 text-blue-700"
+                                                    : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900"
+                                            )}
+                                        >
+                                            <Calculator className="h-4 w-4" />
+                                            Cotizar
+                                        </Link>
                                     </div>
-                                )}
+                                </nav>
+
+                                {/* Bottom Nav Link: Settings */}
+                                <div className="border-t border-zinc-100 pt-4">
+                                    <Link
+                                        href="#"
+                                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100/80 hover:text-zinc-900"
+                                    >
+                                        <Settings className="h-4 w-4" />
+                                        Configuración
+                                    </Link>
+                                </div>
                             </div>
+                        </SheetContent>
+                    </Sheet>
 
-                            {/* Cotizar button */}
-                            <Link
-                                href="/cotizador"
-                                className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
-                            >
-                                <Calculator className="h-4 w-4" />
-                                Cotizar
-                            </Link>
-                        </nav>
-                    </div>
-
-                    {/* Right: Date + Cotizar + Crear Cliente */}
-                    <div className="flex items-center gap-3">
-                        <span className="hidden text-sm text-zinc-500 lg:block">
+                    {/* Right: Date Only */}
+                    <div>
+                        <span className="text-sm text-zinc-500">
                             {today.charAt(0).toUpperCase() + today.slice(1)}
                         </span>
-
-                        {/* Crear Cliente button */}
-                        <button
-                            onClick={() => setShowNewPoliza(true)}
-                            className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:bg-zinc-50"
-                        >
-                            <UserPlus className="h-4 w-4" />
-                            Crear Cliente
-                        </button>
                     </div>
                 </div>
             </header>

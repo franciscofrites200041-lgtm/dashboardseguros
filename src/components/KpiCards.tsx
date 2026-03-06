@@ -1,9 +1,8 @@
 "use client";
 
-import { Shield, TrendingUp, AlertTriangle } from "lucide-react";
+import { Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { KpiData } from "@/lib/types";
-import { formatCurrency } from "@/lib/utils";
 
 interface KpiCardsProps {
     data: KpiData;
@@ -26,72 +25,27 @@ function KpiSkeleton() {
 
 export function KpiCards({ data, loading }: KpiCardsProps) {
     if (loading) {
-        return (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <KpiSkeleton />
-                <KpiSkeleton />
-                <KpiSkeleton />
-            </div>
-        );
+        return <KpiSkeleton />;
     }
 
-    const kpis = [
-        {
-            title: "Pólizas Vigentes",
-            value: data.totalVigentes.toString(),
-            subtitle: "Activas actualmente",
-            icon: Shield,
-            accentColor: "text-blue-600",
-            bgColor: "bg-blue-50",
-            borderColor: "border-l-blue-500",
-        },
-        {
-            title: "Proyectado a Cobrar",
-            value: formatCurrency(data.montoProyectado),
-            subtitle: "Monto mensual vigente",
-            icon: TrendingUp,
-            accentColor: "text-emerald-600",
-            bgColor: "bg-emerald-50",
-            borderColor: "border-l-emerald-500",
-        },
-        {
-            title: "Monto en Riesgo",
-            value: formatCurrency(data.montoEnRiesgo),
-            subtitle: "Pólizas impagas",
-            icon: AlertTriangle,
-            accentColor: "text-red-600",
-            bgColor: "bg-red-50",
-            borderColor: "border-l-red-500",
-        },
-    ];
-
     return (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {kpis.map((kpi) => (
-                <Card
-                    key={kpi.title}
-                    className={`relative overflow-hidden border-zinc-200 border-l-4 ${kpi.borderColor} transition-shadow hover:shadow-md`}
-                >
-                    <CardContent className="p-6">
-                        <div className="flex items-start justify-between">
-                            <div className="space-y-1">
-                                <p className="text-sm font-medium text-zinc-500">
-                                    {kpi.title}
-                                </p>
-                                <p className="text-2xl font-bold tracking-tight text-zinc-900">
-                                    {kpi.value}
-                                </p>
-                                <p className="text-xs text-zinc-400">{kpi.subtitle}</p>
-                            </div>
-                            <div
-                                className={`flex h-10 w-10 items-center justify-center rounded-lg ${kpi.bgColor}`}
-                            >
-                                <kpi.icon className={`h-5 w-5 ${kpi.accentColor}`} />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-            ))}
-        </div>
+        <Card className="relative overflow-hidden border-zinc-200 border-l-4 border-l-blue-500 transition-shadow hover:shadow-md h-full">
+            <CardContent className="flex h-full flex-col justify-center p-8">
+                <div className="flex items-start justify-between">
+                    <div className="space-y-2">
+                        <p className="font-medium text-zinc-500 text-lg">
+                            Pólizas Vigentes
+                        </p>
+                        <p className="text-5xl font-bold tracking-tight text-zinc-900">
+                            {data.totalVigentes.toString()}
+                        </p>
+                        <p className="text-sm text-zinc-400">Activas actualmente</p>
+                    </div>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
+                        <Shield className="h-6 w-6 text-blue-600" />
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
     );
 }
